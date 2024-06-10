@@ -10,7 +10,8 @@
 body {
   color: rgb(var(--color-rgb));
   background: rgb(var(--background-rgb));
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @layer utilities {

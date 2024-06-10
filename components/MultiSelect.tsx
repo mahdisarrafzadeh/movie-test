@@ -51,21 +51,21 @@ const MultiSelect: FC<Props> = ({
   }, []);
 
   return (
-    <div className={classNames("relative", className)}>
+    <div ref={dropdownRef} className={classNames("relative", className)}>
       <button
         onClick={toggleOpen}
-        className="px-4 py-2 w-full border rounded-md text-right"
+        className="px-4 py-2 text-sm w-full  border-gray-300 border rounded-md text-right "
       >
         {title}
       </button>
       {isOpen && (
-        <div
-          ref={dropdownRef}
-          className="absolute mt-2 shadow-lg bg-[#181818] w-full rounded-md p-4"
-        >
+        <div className="absolute mt-2 shadow-lg bg-gray-800 w-full rounded-md p-4">
           <div className={`grid grid-cols-${col} gap-4`}>
             {items.map((item) => (
-              <label key={item} className="flex items-center ">
+              <label
+                key={item}
+                className="flex items-center text-sm cursor-pointer"
+              >
                 <input
                   type="checkbox"
                   checked={selectedItems.includes(item)}
