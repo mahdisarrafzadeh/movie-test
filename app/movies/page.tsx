@@ -1,31 +1,30 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // App
 //
-import axios from "axios";
-import { Movie } from "@/types/Movie";
 import MovieItem from "@/components/MovieItem";
 import FilterMovie from "@/components/FilterMovie";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { retrieveMovies, selectMovies } from "@/redux/slices/movies";
 
 type Props = {};
 
 const Movies = (props: Props) => {
-  const [moviesData, setMoviesData] = useState<Movie[]>([]);
+  const { movies } = useAppSelector(selectMovies);
 
   useEffect(() => {
-    axios
-      .get("data.json")
-      .then((res) => setMoviesData(res.data.movies))
-      .catch((err) => console.log(err));
-  }, []);
+    dispatch(retrieveMovies());
+  }, []); // eslint-disable-line
+
+  const dispatch = useAppDispatch();
 
   return (
     <div className="">
       <FilterMovie />
       <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 ">
-        {moviesData &&
-          moviesData.length > 0 &&
-          moviesData.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
+        {movies &&
+          movies.length > 0 &&
+          movies.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
       </div>
     </div>
   );

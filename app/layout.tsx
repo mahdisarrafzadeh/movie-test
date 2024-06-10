@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import StoreProvider from "./StoreProvider";
 
 const inter = localFont({
   src: [
@@ -35,7 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" dir="rtl">
-      <body className={inter.className}>{children}</body>
+      <StoreProvider>
+        <body className={inter.className}>{children}</body>
+      </StoreProvider>
     </html>
   );
 }
