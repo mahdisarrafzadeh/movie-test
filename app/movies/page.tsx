@@ -7,9 +7,7 @@ import FilterMovie from "@/components/FilterMovie";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { retrieveMovies, selectMovies } from "@/redux/slices/movies";
 
-type Props = {};
-
-const Movies = (props: Props) => {
+const Movies = () => {
   const { movies } = useAppSelector(selectMovies);
 
   useEffect(() => {
