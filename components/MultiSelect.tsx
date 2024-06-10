@@ -1,11 +1,10 @@
 "use client";
 import { FC, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { useRouter } from "next/router";
 
 interface Props {
   items: FilterInterface[];
-  handleChange: (item: string[]) => void;
+  handleChange: (item: string) => void;
   col?: number;
   title: string;
   className?: string;
@@ -19,7 +18,7 @@ const MultiSelect: FC<Props> = ({
   className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [selectedItems, setSelectedItems] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleOpen = () => {
@@ -27,12 +26,8 @@ const MultiSelect: FC<Props> = ({
   };
 
   const handleSelect = (item: string) => {
-    const newSelectedItems = selectedItems.includes(item)
-      ? selectedItems.filter((i) => i !== item)
-      : [...selectedItems, item];
-
-    setSelectedItems(newSelectedItems);
-    handleChange(newSelectedItems);
+    handleChange(item);
+    setSelectedItems(item);
   };
 
   const handleClickOutside = (event: MouseEvent) => {

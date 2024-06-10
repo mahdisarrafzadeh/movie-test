@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Filter from "@/components/MultiSelect";
 import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const genres = [
   { label: "درام", value: "drama" },
@@ -14,11 +15,37 @@ const rateRange = [
 ];
 
 const FilterMovie = () => {
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedGenres, setSelectedGenres] = useState<string>("");
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const newParams = new URLSearchParams(searchParams.toString());
+  const router = useRouter();
 
-  const handleFilterChange = (selectedItems: string[]) => {
-    setSelectedGenres(selectedItems);
-  };
+  const handleGenreFilter = useCallback(
+    (selectedItems: string) => {
+      const currentCategory = newParams.get("category");
+      if (currentCategory === selectedItems) {
+        newParams.delete("category");
+      } else {
+        newParams.set("category", selectedItems);
+      }
+      router.push(`${pathname}?${newParams.toString()}`);
+    },
+    [router, newParams]
+  );
+
+  const handleRateFilter = useCallback(
+    (selectedItems: string) => {
+      const currentCategory = newParams.get("Rate");
+      if (currentCategory === selectedItems) {
+        newParams.delete("Rate");
+      } else {
+        newParams.set("Rate", selectedItems);
+      }
+      router.push(`${pathname}?${newParams.toString()}`);
+    },
+    [router, newParams]
+  );
 
   return (
     <div className="flex flex-row justify-center w-screen space-x-8 space-x-reverse p-8 ">
@@ -26,7 +53,7 @@ const FilterMovie = () => {
         className="w-1/3"
         title="ژانر"
         items={genres}
-        handleChange={handleFilterChange}
+        handleChange={handleGenreFilter}
         col={2}
       />
       <Filter
@@ -34,7 +61,7 @@ const FilterMovie = () => {
         title="امتیاز فیلم"
         items={rateRange}
         col={1}
-        handleChange={handleFilterChange}
+        handleChange={handleRateFilter}
       />
     </div>
   );
