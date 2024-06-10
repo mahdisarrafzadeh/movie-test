@@ -1,9 +1,10 @@
 "use client";
 import { FC, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 
 interface Props {
-  items: string[];
+  items: FilterInterface[];
   handleChange: (item: string[]) => void;
   col?: number;
   title: string;
@@ -63,16 +64,16 @@ const MultiSelect: FC<Props> = ({
           <div className={`grid grid-cols-${col} gap-4`}>
             {items.map((item) => (
               <label
-                key={item}
+                key={item.value}
                 className="flex items-center text-sm cursor-pointer"
               >
                 <input
                   type="checkbox"
-                  checked={selectedItems.includes(item)}
-                  onChange={() => handleSelect(item)}
+                  checked={selectedItems.includes(item.value)}
+                  onChange={() => handleSelect(item.value)}
                   className="ml-1"
                 />
-                {item}
+                {item.label}
               </label>
             ))}
           </div>
