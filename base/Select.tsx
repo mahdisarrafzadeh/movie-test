@@ -60,7 +60,6 @@ const Select: FC<Props> = ({
         className="px-4 py-2 text-sm w-full flex justify-between items-center border-[#616160] border rounded-md text-right "
       >
         {title}
-
         <MdArrowDropDown
           size={18}
           className={classNames(" transition-transform", {
