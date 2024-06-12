@@ -20,7 +20,7 @@ const FilterMovie = () => {
   return (
     <div className="flex flex-row justify-center w-screen space-x-8 bg-[#1E1E1E] bg-opacity-10 space-x-reverse p-8 ">
       <Select
-        className="w-1/3"
+        className="max-sm:w-full mt-3 md:w-1/3"
         title="ژانر"
         items={genres}
         value={newParams.get("category") ?? undefined}
@@ -28,7 +28,7 @@ const FilterMovie = () => {
         col={2}
       />
       <Select
-        className="w-1/3"
+        className="max-sm:w-full mt-3 w-1/3 md:w-1/3"
         title="امتیاز فیلم"
         items={rateRange}
         col={1}
