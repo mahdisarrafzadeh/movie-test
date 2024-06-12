@@ -1,13 +1,15 @@
 "use client";
 import { FC, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
+import { FilterItemsInterface } from "@/types/Filter";
 
 interface Props {
-  items: FilterInterface[];
+  items: FilterItemsInterface[];
   handleChange: (item: string) => void;
   col?: number;
   title: string;
   className?: string;
+  value?: string;
 }
 
 const MultiSelect: FC<Props> = ({
@@ -16,9 +18,10 @@ const MultiSelect: FC<Props> = ({
   col = 2,
   title,
   className,
+  value = "",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string>("");
+  const [selectedItems, setSelectedItems] = useState<string>(value);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleOpen = () => {
@@ -27,7 +30,9 @@ const MultiSelect: FC<Props> = ({
 
   const handleSelect = (item: string) => {
     handleChange(item);
-    setSelectedItems(item);
+    if (selectedItems === item) {
+      setSelectedItems("");
+    } else setSelectedItems(item);
   };
 
   const handleClickOutside = (event: MouseEvent) => {

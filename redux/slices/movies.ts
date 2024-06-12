@@ -1,63 +1,103 @@
-import { Movie } from "@/types/Movie";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  createSelector,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
+import { Movie } from "@/types/Movie";
 
-interface moviesState {
-  selectedGenres: string[];
-  loading: boolean;
+interface MoviesState {
   movies: Movie[];
-  error?: string;
+  filter: string;
+  sort: string;
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
-const initialState: moviesState = {
-  selectedGenres: [],
-  loading: false,
-  movies: [],
-  error: undefined,
-};
-
-const url = {
-  movies: "data.json",
-};
-
-export const retrieveMovies = createAsyncThunk(
-  "products/retrieve",
+// Async thunk to fetch movies data
+export const fetchMovies = createAsyncThunk<Movie[]>(
+  "movies/fetchMovies",
   async () => {
-    try {
-      const res = await axios.get(url.movies);
-      return res?.data?.movies;
-    } catch (error) {
-      throw error;
-    }
+    const response = await axios.get("data.json");
+    return response?.data.movies;
   }
 );
+
+const initialState: MoviesState = {
+  movies: [],
+  filter: "",
+  sort: "",
+  status: "idle",
+  error: null,
+};
 
 const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    setSelectedGenres(state, action: PayloadAction<string[]>) {
-      state.selectedGenres = action.payload;
+    setFilter(state, action: PayloadAction<string>) {
+      state.filter = action.payload;
+    },
+    setSort(state, action: PayloadAction<string>) {
+      state.sort = action.payload;
+    },
+    clearFilter(state) {
+      state.filter = "";
+    },
+    clearSort(state) {
+      state.sort = "";
     },
   },
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
-      .addCase(retrieveMovies.pending, (state) => {
-        state.loading = true;
+      .addCase(fetchMovies.pending, (state) => {
+        state.status = "loading";
       })
-      .addCase(retrieveMovies.fulfilled, (state, action) => {
-        state.loading = false;
-        state.movies = action.payload;
-      })
-      .addCase(retrieveMovies.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action?.error?.message;
+      .addCase(
+        fetchMovies.fulfilled,
+        (state, action: PayloadAction<Movie[]>) => {
+          state.status = "succeeded";
+          state.movies = action.payload;
+        }
+      )
+      .addCase(fetchMovies.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Failed to fetch movies";
       });
   },
 });
 
-export const { setSelectedGenres } = moviesSlice.actions;
+export const { setFilter, setSort, clearFilter, clearSort } =
+  moviesSlice.actions;
 
-export const selectMovies = (state: RootState) => state.movies;
 export default moviesSlice.reducer;
+
+// Selectors
+const selectMovies = (state: RootState) => state.movies.movies;
+const selectFilter = (state: RootState) => state.movies.filter;
+const selectSort = (state: RootState) => state.movies.sort;
+
+export const selectFilteredAndSortedMovies = createSelector(
+  [selectMovies, selectFilter, selectSort],
+  (movies, filter, sort) => {
+    let filteredMovies = filter
+      ? movies.filter((movie) =>
+          movie.categories.some((category) => filter === category.title_en)
+        )
+      : movies;
+
+    if (sort) {
+      filteredMovies = filteredMovies
+        .slice()
+        .sort((a, b) =>
+          sort === "asc"
+            ? parseFloat(b.rate_avrage) - parseFloat(a.rate_avrage)
+            : parseFloat(a.rate_avrage) - parseFloat(b.rate_avrage)
+        );
+    }
+
+    return filteredMovies;
+  }
+);

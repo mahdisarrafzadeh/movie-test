@@ -3,15 +3,21 @@ import { useEffect } from "react";
 // App
 //
 import MovieItem from "@/components/MovieItem";
-import FilterMovie from "@/components/FilterMovie";
+import FilterMovie from "@/components/FilterMovies/FilterMovie";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
-import { retrieveMovies, selectMovies } from "@/redux/slices/movies";
+import {
+  fetchMovies,
+  selectFilteredAndSortedMovies,
+} from "@/redux/slices/movies";
+import { RootState } from "@/redux/store";
 
 const Movies = () => {
-  const { movies } = useAppSelector(selectMovies);
+  const movies = useAppSelector((state: RootState) =>
+    selectFilteredAndSortedMovies(state)
+  );
 
   useEffect(() => {
-    dispatch(retrieveMovies());
+    dispatch(fetchMovies());
   }, []); // eslint-disable-line
 
   const dispatch = useAppDispatch();
@@ -20,9 +26,9 @@ const Movies = () => {
     <div className="">
       <FilterMovie />
       <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 ">
-        {movies &&
-          movies.length > 0 &&
-          movies.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
+        {movies.map((movie) => (
+          <MovieItem movie={movie} key={movie.id} />
+        ))}
       </div>
     </div>
   );
