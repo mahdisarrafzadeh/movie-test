@@ -2,7 +2,7 @@ import React from "react";
 
 import useFilterMovies from "./useFilterMovies";
 import { FilterItemsInterface } from "@/types/Filter";
-import Select from "@/base/Select";
+import Select from "@/base/Select/Select";
 
 const genres: FilterItemsInterface[] = [
   { label: "درام", value: "drama" },
@@ -18,7 +18,7 @@ const rateRange: FilterItemsInterface[] = [
 const FilterMovie = () => {
   const { handleGenreFilter, handleRateFilter, newParams } = useFilterMovies();
   return (
-    <div className="flex flex-row justify-center w-screen space-x-8 bg-[#1E1E1E] bg-opacity-10 space-x-reverse p-8 ">
+    <>
       <Select
         className="max-sm:w-full mt-3 md:w-1/3"
         title="ژانر"
@@ -35,7 +35,7 @@ const FilterMovie = () => {
         value={newParams.get("sort") ?? undefined}
         handleChange={handleRateFilter}
       />
-    </div>
+    </>
   );
 };
 
