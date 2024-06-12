@@ -98,6 +98,6 @@ export const selectFilteredAndSortedMovies = createSelector(
         );
     }
 
-    return filteredMovies;
+    return { filteredMovies, sort, filter };
   }
 );
