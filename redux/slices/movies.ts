@@ -92,7 +92,7 @@ export const selectFilteredAndSortedMovies = createSelector(
       filteredMovies = filteredMovies
         .slice()
         .sort((a, b) =>
-          sort === "asc"
+          sort === "highest"
             ? parseFloat(b.rate_avrage) - parseFloat(a.rate_avrage)
             : parseFloat(a.rate_avrage) - parseFloat(b.rate_avrage)
         );

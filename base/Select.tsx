@@ -2,6 +2,8 @@
 import { FC, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { FilterItemsInterface } from "@/types/Filter";
+import Checkbox from "./Checkbox";
+import { MdArrowDropDown } from "react-icons/md";
 
 interface Props {
   items: FilterItemsInterface[];
@@ -12,7 +14,7 @@ interface Props {
   value?: string;
 }
 
-const MultiSelect: FC<Props> = ({
+const Select: FC<Props> = ({
   items,
   handleChange,
   col = 2,
@@ -55,23 +57,32 @@ const MultiSelect: FC<Props> = ({
     <div ref={dropdownRef} className={classNames("relative", className)}>
       <button
         onClick={toggleOpen}
-        className="px-4 py-2 text-sm w-full  border-gray-300 border rounded-md text-right "
+        className="px-4 py-2 text-sm w-full flex justify-between items-center border-[#616160] border rounded-md text-right "
       >
         {title}
+
+        <MdArrowDropDown
+          size={18}
+          className={classNames(" transition-transform", {
+            "rotate-180": isOpen,
+          })}
+        />
       </button>
       {isOpen && (
-        <div className="absolute mt-2 shadow-lg bg-gray-800 w-full rounded-md p-4">
-          <div className={`grid grid-cols-${col} gap-4`}>
+        <div className="absolute mt-2 shadow-lg bg-[#1E1E1E] w-full rounded-md p-4">
+          <div
+            className={classNames(`grid grid-cols-1 gap-4`, {
+              "grid-cols-2": col === 2,
+            })}
+          >
             {items.map((item) => (
               <label
                 key={item.value}
                 className="flex items-center text-sm cursor-pointer"
               >
-                <input
-                  type="checkbox"
-                  checked={selectedItems.includes(item.value)}
+                <Checkbox
+                  checkedItems={selectedItems === item.value}
                   onChange={() => handleSelect(item.value)}
-                  className="ml-1"
                 />
                 {item.label}
               </label>
@@ -83,4 +94,4 @@ const MultiSelect: FC<Props> = ({
   );
 };
 
-export default MultiSelect;
+export default Select;

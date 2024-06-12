@@ -12,13 +12,10 @@ const MovieItem: FC<Props> = ({ movie }) => {
       <Image
         width={250}
         height={330}
-        src={
-          movie.pic.movie_img_b ??
-          movie.pic.movie_img_m ??
-          movie.pic.movie_img_s
-        }
+        src={movie.pic.movie_img_m}
         alt={movie.movie_title}
         className="rounded-lg"
+        overrideSrc={(movie.pic.movie_img_m, movie.pic.movie_img_s)}
       />
       <div>
         <label className="px-4">{movie.movie_title}</label>
