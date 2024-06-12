@@ -1,6 +1,6 @@
 import React from "react";
 
-import useMovieList from "@/hooks/useMovieList";
+import useMovieList from "@/app/movies/useMovieList";
 import MovieItem from "../MovieItem";
 
 const MovieList = () => {

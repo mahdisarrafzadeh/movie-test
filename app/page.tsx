@@ -1,4 +1,4 @@
-import useHomePage from "@/hooks/useHomePage";
+import useHomePage from "@/app/useHomePage";
 import Link from "next/link";
 
 export default function Home() {

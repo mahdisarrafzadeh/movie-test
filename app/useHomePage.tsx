@@ -1,7 +1,6 @@
-import React from "react";
-import { useAppSelector } from "./hooks";
-import { selectFilteredAndSortedMovies } from "@/redux/slices/movies";
 import { RootState } from "@/redux/store";
+import { useAppSelector } from "../hooks/hooks";
+import { selectFilteredAndSortedMovies } from "@/redux/slices/movies";
 
 const useHomePage = () => {
   const { filter, sort } = useAppSelector((state: RootState) =>
