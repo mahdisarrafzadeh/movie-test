@@ -1,8 +1,10 @@
 "use client";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC } from "react";
+
+import useSelect from "./useSelect";
 import classNames from "classnames";
+import Checkbox from "../Checkbox";
 import { FilterItemsInterface } from "@/types/Filter";
-import Checkbox from "./Checkbox";
 import { MdArrowDropDown } from "react-icons/md";
 
 interface Props {
@@ -22,36 +24,11 @@ const Select: FC<Props> = ({
   className,
   value = "",
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string>(value);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleSelect = (item: string) => {
-    handleChange(item);
-    if (selectedItems === item) {
-      setSelectedItems("");
-    } else setSelectedItems(item);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const { isOpen, toggleOpen, selectedItems, handleSelect, dropdownRef } =
+    useSelect({
+      initialValue: value,
+      handleChange,
+    });
 
   return (
     <div ref={dropdownRef} className={classNames("relative", className)}>
