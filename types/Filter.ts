@@ -1,5 +1,3 @@
-import { type } from "os";
-
 export type Category = "action" | "drama" | "sci-fi" | "comedy";
 export type RatingSort = "lowest" | "highest";
 
