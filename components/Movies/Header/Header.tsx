@@ -1,5 +1,5 @@
 import React from "react";
-import FilterMovie from "./FilterMovies/FilterMovie";
+import FilterMovie from "./FilterMovies";
 import Link from "next/link";
 
 const Header = () => {

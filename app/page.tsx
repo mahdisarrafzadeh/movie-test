@@ -1,4 +1,4 @@
-import MoviesLink from "@/components/Home/MoviesLink";
+import MoviesLink from "@/components/Home";
 
 export default function Home() {
   return (

@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 
-import useMovieList from "@/components/Movies/useMovieList";
-import MovieItem from "../MovieItem";
+import useMovieList from "@/components/Movies/MovieList/useMovieList";
+import MovieItem from "./MovieItem";
 
 const MovieList = () => {
   const movies = useMovieList();
