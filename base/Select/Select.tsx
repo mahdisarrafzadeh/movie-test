@@ -45,7 +45,7 @@ const Select: FC<Props> = ({
         />
       </button>
       {isOpen && (
-        <div className="absolute mt-2 shadow-lg bg-[#1E1E1E] w-full rounded-md p-4">
+        <div className="absolute z-20 mt-2 shadow-lg bg-[#1E1E1E] w-full rounded-md p-4">
           <div
             className={classNames(`grid grid-cols-1 gap-4`, {
               "grid-cols-2": col === 2,
