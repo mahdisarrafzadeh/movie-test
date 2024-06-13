@@ -6,4 +6,7 @@ export const string = {
   home: {
     moviesLink: "تماشای فیلم ها",
   },
+  movies: {
+    back: "بازگشت",
+  },
 };
