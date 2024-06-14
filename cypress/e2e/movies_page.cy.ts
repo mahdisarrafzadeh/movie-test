@@ -1,9 +1,9 @@
-import { testIds } from "../utils";
+import { string, testIds } from "../utils";
 
 describe("Movies Page", () => {
   beforeEach(() => {
     // Navigate to the movies page before each test
-    cy.visit("/movies");
+    cy.visit(string.path.movies);
   });
 
   it("should display the movie list", () => {
