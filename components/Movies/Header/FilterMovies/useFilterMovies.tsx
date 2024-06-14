@@ -1,8 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-////App
-//
+
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import {
   clearFilter,

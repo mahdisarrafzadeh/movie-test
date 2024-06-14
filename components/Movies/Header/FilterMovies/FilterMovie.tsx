@@ -3,7 +3,7 @@ import React from "react";
 
 import useFilterMovies from "./useFilterMovies";
 import Select from "@/base/Select/Select";
-import { FilterItemsInterface } from "@/types/Filter";
+import { FilterItemsInterface } from "@/types/filter";
 import { testIds } from "@/utils";
 
 const genres: FilterItemsInterface[] = [

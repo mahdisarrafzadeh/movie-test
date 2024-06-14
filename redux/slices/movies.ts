@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
-import { Movie } from "@/types/Movie";
+import { Movie } from "@/types/movie";
 
 interface MoviesState {
   movies: Movie[];

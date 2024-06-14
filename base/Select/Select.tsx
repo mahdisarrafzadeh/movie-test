@@ -1,11 +1,11 @@
 "use client";
 import { FC } from "react";
 
-import useSelect from "./useSelect";
 import classNames from "classnames";
-import Checkbox from "../Checkbox";
-import { FilterItemsInterface } from "@/types/Filter";
 import { MdArrowDropDown } from "react-icons/md";
+import useSelect from "./useSelect";
+import Checkbox from "../Checkbox";
+import { FilterItemsInterface } from "@/types/filter";
 
 interface Props {
   items: FilterItemsInterface[];

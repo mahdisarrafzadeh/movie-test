@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-////App
-//
+
 import FilterMovie from "./FilterMovies";
 import { string, testIds } from "@/utils";
 import { MdArrowBackIos } from "react-icons/md";
