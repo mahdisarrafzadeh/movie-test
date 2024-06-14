@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 
 interface SkeletonProps {
   width?: string;
@@ -7,7 +7,7 @@ interface SkeletonProps {
   additionalClasses?: string;
 }
 
-const Skeleton: React.FC<SkeletonProps> = ({
+const Skeleton: FC<SkeletonProps> = ({
   width = "w-full",
   height = "h-5",
   borderRadius = "rounded",

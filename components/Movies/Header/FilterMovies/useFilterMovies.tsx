@@ -1,6 +1,9 @@
 "use client";
 import { useCallback, useEffect, useRef } from "react";
-import { useAppSelector } from "@/hooks/hooks";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+////App
+//
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import {
   clearFilter,
   clearSort,
@@ -8,8 +11,6 @@ import {
   setFilter,
   setSort,
 } from "@/redux/slices/movies";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 
 const useFilterMovies = () => {
@@ -20,7 +21,7 @@ const useFilterMovies = () => {
 
   const newParams = new URLSearchParams(searchParams.toString());
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const movies = useAppSelector((state: RootState) =>
     selectFilteredAndSortedMovies(state)
   );

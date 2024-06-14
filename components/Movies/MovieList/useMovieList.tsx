@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+////App
+//
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import {
   fetchMovies,
