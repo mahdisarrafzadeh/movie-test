@@ -12,6 +12,7 @@ const Header = () => {
       className="relative w-screen bg-gray-850 bg-opacity-5 px-8 pt-14 pb-8"
     >
       <Link
+        data-testid={testIds.movies.backLink}
         className="inline-flex items-center justify-end absolute top-5 left-16"
         href={string.path.home}
       >

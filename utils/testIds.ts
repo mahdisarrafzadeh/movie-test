@@ -4,6 +4,7 @@ export const testIds = {
     homeContainer: "home-container",
   },
   movies: {
+    backLink: "back-link",
     movieList: "movie-list",
     movieItem: "movie-item",
     genreSelect: "genre-select",

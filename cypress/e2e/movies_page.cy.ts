@@ -6,6 +6,10 @@ describe("Movies Page", () => {
     cy.visit(string.path.movies);
   });
 
+  it("should render the Back component", () => {
+    cy.findByTestId(testIds.movies.backLink).should("exist");
+  });
+
   it("should display the movie list", () => {
     cy.findByTestId(testIds.movies.movieList).should("be.visible");
     cy.findByTestId(testIds.movies.movieList)
@@ -57,5 +61,16 @@ describe("Movies Page", () => {
     ).should("be.visible");
     cy.findByTestId(`${testIds.movies.sortSelect}-item-lowest`).click();
     cy.url().should("include", "category=comedy&sort=lowest");
+  });
+
+  it("should have correct href attribute", () => {
+    cy.findByTestId(testIds.movies.backLink)
+      .should("have.attr", "href")
+      .and("include", string.path.home);
+  });
+
+  it("should navigate to home page", () => {
+    cy.findByTestId(testIds.movies.backLink).click();
+    cy.url().should("include", string.path.home);
   });
 });
