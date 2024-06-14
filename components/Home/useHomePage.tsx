@@ -6,9 +6,9 @@ const useHomePage = () => {
     selectFilteredAndSortedMovies(state)
   );
 
-  const query: { filter?: string; sort?: string } = {};
+  const query: { category?: string; sort?: string } = {};
   if (sort) query.sort = sort;
-  if (filter) query.filter = filter;
+  if (filter) query.category = filter;
 
   return query;
 };
