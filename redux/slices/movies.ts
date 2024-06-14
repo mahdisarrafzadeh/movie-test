@@ -1,11 +1,5 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  PayloadAction,
-  createSelector,
-} from "@reduxjs/toolkit";
-import axios from "axios";
-import { RootState } from "../store";
+import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
+import { RootState, fetchMovies } from "@/redux";
 import { Movie as MoviesType } from "@/types";
 
 interface MoviesState {
@@ -15,15 +9,6 @@ interface MoviesState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
-
-// Async thunk to fetch movies data
-export const fetchMovies = createAsyncThunk<MoviesType[]>(
-  "movies/fetchMovies",
-  async () => {
-    const response = await axios.get("data.json");
-    return response?.data.movies;
-  }
-);
 
 const initialState: MoviesState = {
   movies: [],
