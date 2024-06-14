@@ -7,7 +7,7 @@ interface UseSelectProps {
 
 const useSelect = ({ initialValue = "", handleChange }: UseSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string>(initialValue);
+  const [selectedItem, setSelectedItem] = useState<string>(initialValue);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleOpen = () => {
@@ -16,7 +16,7 @@ const useSelect = ({ initialValue = "", handleChange }: UseSelectProps) => {
 
   const handleSelect = (item: string) => {
     handleChange(item);
-    setSelectedItems((prev) => (prev === item ? "" : item));
+    setSelectedItem((prev) => (prev === item ? "" : item));
   };
 
   const handleClickOutside = useCallback((event: MouseEvent) => {
@@ -38,7 +38,7 @@ const useSelect = ({ initialValue = "", handleChange }: UseSelectProps) => {
   return {
     isOpen,
     toggleOpen,
-    selectedItems,
+    selectedItem,
     handleSelect,
     dropdownRef,
   };

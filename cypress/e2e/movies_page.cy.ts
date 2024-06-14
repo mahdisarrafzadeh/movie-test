@@ -1,0 +1,57 @@
+import { testIds } from "../utils";
+
+describe("Movies Page", () => {
+  beforeEach(() => {
+    // Navigate to the movies page before each test
+    cy.visit("/movies");
+  });
+
+  it("should display the movie list", () => {
+    cy.findByTestId(testIds.movies.movieList).should("be.visible");
+    cy.findByTestId(testIds.movies.movieList)
+      .children()
+      .should("have.length.greaterThan", 0);
+  });
+
+  it("should filter movies by genre", () => {
+    cy.findByTestId(
+      testIds.movies.filterButton(testIds.movies.genreSelect)
+    ).click();
+    cy.findByTestId(
+      testIds.movies.filterDropdown(testIds.movies.genreSelect)
+    ).should("be.visible");
+    cy.findByTestId(`${testIds.movies.genreSelect}-item-drama`).click();
+
+    cy.url().should("include", "category=drama");
+  });
+
+  it("should sort movies by highest rating", () => {
+    cy.findByTestId(
+      testIds.movies.filterButton(testIds.movies.sortSelect)
+    ).click();
+    cy.findByTestId(
+      testIds.movies.filterDropdown(testIds.movies.sortSelect)
+    ).should("be.visible");
+    cy.findByTestId(`${testIds.movies.sortSelect}-item-highest`).click();
+    cy.url().should("include", "sort=highest");
+  });
+
+  it("should combine filters and sort movies", () => {
+    cy.findByTestId(
+      testIds.movies.filterButton(testIds.movies.genreSelect)
+    ).click();
+    cy.findByTestId(
+      testIds.movies.filterDropdown(testIds.movies.genreSelect)
+    ).should("be.visible");
+    cy.findByTestId(`${testIds.movies.genreSelect}-item-comedy`).click();
+    cy.findByTestId(
+      testIds.movies.filterButton(testIds.movies.sortSelect)
+    ).click();
+    cy.findByTestId(
+      testIds.movies.filterDropdown(testIds.movies.sortSelect)
+    ).should("be.visible");
+    cy.findByTestId(`${testIds.movies.sortSelect}-item-lowest`).click();
+    cy.url().should("include", "category=comedy");
+    cy.url().should("include", "sort=lowest");
+  });
+});

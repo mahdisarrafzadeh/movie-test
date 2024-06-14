@@ -1,1 +1,1 @@
-export { testIds } from "../utils";
+export { testIds, string } from "../utils";

@@ -4,6 +4,7 @@ import React from "react";
 import useFilterMovies from "./useFilterMovies";
 import Select from "@/base/Select/Select";
 import { FilterItemsInterface } from "@/types/Filter";
+import { testIds } from "@/utils";
 
 const genres: FilterItemsInterface[] = [
   { label: "درام", value: "drama" },
@@ -21,6 +22,7 @@ const FilterMovie = () => {
   return (
     <>
       <Select
+        testId={testIds.movies.genreSelect}
         className="max-sm:w-full mt-3 md:w-1/3"
         title="ژانر"
         items={genres}
@@ -29,6 +31,7 @@ const FilterMovie = () => {
         col={2}
       />
       <Select
+        testId={testIds.movies.sortSelect}
         className="max-sm:w-full mt-3 w-1/3 md:w-1/3"
         title="امتیاز فیلم"
         items={rateRange}

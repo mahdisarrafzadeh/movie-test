@@ -6,9 +6,10 @@ type Props = {
   onChange: VoidFunction;
 };
 
-const Checkbox: FC<Props> = ({ checkedItems = false, onChange }) => {
+const Checkbox: FC<Props> = ({ checkedItems = false, onChange, ...props }) => {
   return (
     <input
+      {...props}
       type="checkbox"
       checked={checkedItems}
       onChange={onChange}
