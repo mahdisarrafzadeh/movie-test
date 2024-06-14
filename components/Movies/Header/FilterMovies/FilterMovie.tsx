@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 
 import useFilterMovies from "./useFilterMovies";
 import { FilterItemsInterface } from "@/types";
 import { string, testIds } from "@/utils";
-import { Select } from "@/base";
+import { Loading, Select } from "@/base";
 
 const genres: FilterItemsInterface[] = [
   { label: "درام", value: "drama" },
@@ -21,24 +21,26 @@ const FilterMovie = () => {
   const { handleGenreFilter, handleRateFilter, newParams } = useFilterMovies();
   return (
     <div className="flex flex-row justify-center space-x-8 space-x-reverse max-sm:flex-col max-sm:space-x-0">
-      <Select
-        testId={testIds.movies.genreSelect}
-        className="max-sm:w-full mt-3 w-1/3"
-        title={string.movies.genre}
-        items={genres}
-        value={newParams.get("category") ?? undefined}
-        handleChange={handleGenreFilter}
-        col={2}
-      />
-      <Select
-        testId={testIds.movies.sortSelect}
-        className="max-sm:w-full mt-3 w-1/3"
-        title={string.movies.rateMovie}
-        items={rateRange}
-        col={1}
-        value={newParams.get("sort") ?? undefined}
-        handleChange={handleRateFilter}
-      />
+      <Suspense fallback={<Loading />}>
+        <Select
+          testId={testIds.movies.genreSelect}
+          className="max-sm:w-full mt-3 w-1/3"
+          title={string.movies.genre}
+          items={genres}
+          value={newParams.get("category") ?? undefined}
+          handleChange={handleGenreFilter}
+          col={2}
+        />
+        <Select
+          testId={testIds.movies.sortSelect}
+          className="max-sm:w-full mt-3 w-1/3"
+          title={string.movies.rateMovie}
+          items={rateRange}
+          col={1}
+          value={newParams.get("sort") ?? undefined}
+          handleChange={handleRateFilter}
+        />
+      </Suspense>
     </div>
   );
 };
