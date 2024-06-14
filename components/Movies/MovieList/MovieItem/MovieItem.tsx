@@ -12,7 +12,7 @@ type Props = {
 const MovieItem: FC<Props> = ({ movie }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <div className="p-2 flex flex-col">
+    <div className="p-2 flex flex-col w-full max-w-[18.75rem]">
       <div
         className="relative"
         onMouseEnter={() => setHovered(true)}
@@ -21,7 +21,7 @@ const MovieItem: FC<Props> = ({ movie }) => {
         <ImageWithFallback
           width={300}
           height={400}
-          src={movie.pic.movie_img_s}
+          src={movie.pic.movie_img_m}
           fallbackSrc={movie.pic.movie_img_m}
           alt={movie.movie_title}
           className={`rounded-lg transition-all duration-300 ${

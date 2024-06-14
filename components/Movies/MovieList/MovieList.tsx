@@ -16,7 +16,7 @@ const MovieList = () => {
         {Array(6)
           .fill(null)
           .map((_, index) => (
-            <Skeleton height={"h-[20rem]"} />
+            <Skeleton key={index} height={"h-[20rem]"} />
           ))}
       </div>
     );
@@ -25,7 +25,7 @@ const MovieList = () => {
   return (
     <div
       data-testid={testIds.movies.movieList}
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 p-8"
+      className="grid place-items-center max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 p-8"
     >
       {filteredMovies.map((movie) => (
         <MovieItem movie={movie} key={movie.id} />
