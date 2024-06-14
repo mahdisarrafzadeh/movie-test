@@ -1,5 +1,5 @@
 import { RootState } from "@/redux/store";
-import { useAppSelector } from "../../hooks/hooks";
+import { useAppSelector } from "@/hooks";
 import { selectFilteredAndSortedMovies } from "@/redux/slices/movies";
 
 const useHomePage = () => {

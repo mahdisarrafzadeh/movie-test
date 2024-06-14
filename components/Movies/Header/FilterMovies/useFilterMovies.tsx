@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
   clearFilter,
   clearSort,
@@ -64,7 +64,7 @@ const useFilterMovies = () => {
       dispatch(setSort(newParams.get("sort") ?? ""));
     }
     firstRender.current = false;
-  }, [movies, dispatch]);
+  }, [movies, dispatch]); // eslint-disable-line
 
   return {
     handleGenreFilter,
