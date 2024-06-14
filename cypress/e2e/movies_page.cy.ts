@@ -23,6 +23,10 @@ describe("Movies Page", () => {
     cy.findByTestId(`${testIds.movies.genreSelect}-item-drama`).click();
 
     cy.url().should("include", "category=drama");
+
+    cy.findByTestId(`${testIds.movies.movieItem}-0`)
+      .trigger("mouseover")
+      .contains("درام");
   });
 
   it("should sort movies by highest rating", () => {

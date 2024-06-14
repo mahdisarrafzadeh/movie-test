@@ -8,5 +8,7 @@ export const string = {
   },
   movies: {
     back: "بازگشت",
+    genre: "ژانر",
+    rate: "امتیاز فیلم",
   },
 };

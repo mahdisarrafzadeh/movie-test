@@ -4,7 +4,7 @@ import React from "react";
 import useFilterMovies from "./useFilterMovies";
 import Select from "@/base/Select/Select";
 import { FilterItemsInterface } from "@/types/filter";
-import { testIds } from "@/utils";
+import { string, testIds } from "@/utils";
 
 const genres: FilterItemsInterface[] = [
   { label: "درام", value: "drama" },
@@ -24,7 +24,7 @@ const FilterMovie = () => {
       <Select
         testId={testIds.movies.genreSelect}
         className="max-sm:w-full mt-3 w-1/3"
-        title="ژانر"
+        title={string.movies.genre}
         items={genres}
         value={newParams.get("category") ?? undefined}
         handleChange={handleGenreFilter}
@@ -33,7 +33,7 @@ const FilterMovie = () => {
       <Select
         testId={testIds.movies.sortSelect}
         className="max-sm:w-full mt-3 w-1/3"
-        title="امتیاز فیلم"
+        title={string.movies.rate}
         items={rateRange}
         col={1}
         value={newParams.get("sort") ?? undefined}

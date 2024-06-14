@@ -5,6 +5,7 @@ export const testIds = {
   },
   movies: {
     movieList: "movie-list",
+    movieItem: "movie-item",
     genreSelect: "genre-select",
     sortSelect: "sort-select",
     header: "header",

@@ -6,12 +6,16 @@ import { MdThumbUpAlt } from "react-icons/md";
 
 type Props = {
   movie: Movie;
+  testId?: string;
 };
 
-const MovieItem: FC<Props> = ({ movie }) => {
+const MovieItem: FC<Props> = ({ movie, testId }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <div className="p-2 flex flex-col w-full max-w-[18.75rem]">
+    <div
+      className="p-2 flex flex-col w-full max-w-[18.75rem]"
+      data-testid={testId}
+    >
       <div
         className="relative"
         onMouseEnter={() => setHovered(true)}
