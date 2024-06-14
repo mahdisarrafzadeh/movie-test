@@ -44,6 +44,7 @@ describe("Movies Page", () => {
       testIds.movies.filterDropdown(testIds.movies.genreSelect)
     ).should("be.visible");
     cy.findByTestId(`${testIds.movies.genreSelect}-item-comedy`).click();
+    cy.url().should("include", "category=comedy");
     cy.findByTestId(
       testIds.movies.filterButton(testIds.movies.sortSelect)
     ).click();
@@ -51,7 +52,6 @@ describe("Movies Page", () => {
       testIds.movies.filterDropdown(testIds.movies.sortSelect)
     ).should("be.visible");
     cy.findByTestId(`${testIds.movies.sortSelect}-item-lowest`).click();
-    cy.url().should("include", "category=comedy");
-    cy.url().should("include", "sort=lowest");
+    cy.url().should("include", "category=comedy&sort=lowest");
   });
 });
