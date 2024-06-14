@@ -3,9 +3,9 @@ import { FC } from "react";
 
 import classNames from "classnames";
 import useSelect from "./useSelect";
-import { Checkbox } from "@/base";
-import { MdArrowDropDown } from "react-icons/md";
 import { FilterItemsInterface } from "@/types";
+import { SelectButton } from "./SelectButton";
+import { Dropdown } from "./Dropdown";
 
 interface Props {
   items: FilterItemsInterface[];
@@ -38,44 +38,20 @@ const Select: FC<Props> = ({
       className={classNames("relative", className)}
       data-testid={testId}
     >
-      <button
-        onClick={toggleOpen}
-        className="px-4 py-2 text-sm w-full flex justify-between items-center border-[#616160] border rounded-md text-right"
-        data-testid={`${testId}-button`}
-      >
-        {title}
-        <MdArrowDropDown
-          size={18}
-          className={classNames("transition-transform", {
-            "rotate-180": isOpen,
-          })}
-        />
-      </button>
+      <SelectButton
+        isOpen={isOpen}
+        title={title}
+        toggleOpen={toggleOpen}
+        testId={testId}
+      />
       {isOpen && (
-        <div
-          className="absolute z-20 mt-2 shadow-lg bg-gray-850 w-full rounded-md p-4"
-          data-testid={`${testId}-dropdown`}
-        >
-          <div
-            className={classNames(`grid grid-cols-1 gap-4`, {
-              "grid-cols-2": col === 2,
-            })}
-          >
-            {items.map((item) => (
-              <label
-                key={item.value}
-                className="flex items-center text-sm cursor-pointer"
-              >
-                <Checkbox
-                  data-testid={`${testId}-item-${item.value}`}
-                  checkedItems={selectedItem === item.value}
-                  onChange={() => handleSelect(item.value)}
-                />
-                {item.label}
-              </label>
-            ))}
-          </div>
-        </div>
+        <Dropdown
+          items={items}
+          col={col}
+          selectedItem={selectedItem}
+          handleSelect={handleSelect}
+          testId={testId}
+        />
       )}
     </div>
   );
