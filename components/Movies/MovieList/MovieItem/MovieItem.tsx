@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
-import ImageWithFallback from "@/base/ImageFallBack";
-import { Movie } from "@/types/movie";
+import ImageWithFallback from "@/base/ImageFallBack/ImageFallBack";
+import { Movie } from "@/types";
 import { MdThumbUpAlt } from "react-icons/md";
 
 type Props = {

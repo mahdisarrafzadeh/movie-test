@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-//// App
-//
-import useHomePage from "@/components/Home/useHomePage";
+
 import { string, testIds } from "@/utils";
+import useHomePage from "./useHomePage";
 
 const MoviesLink = () => {
   const query = useHomePage();

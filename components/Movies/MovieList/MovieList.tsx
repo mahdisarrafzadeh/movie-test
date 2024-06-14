@@ -2,9 +2,9 @@
 import React from "react";
 
 import useMovieList from "@/components/Movies/MovieList/useMovieList";
-import Skeleton from "@/base/Skeleton";
 import MovieItem from "./MovieItem";
 import { testIds } from "@/utils";
+import { Skeleton } from "@/base";
 
 const MovieList = () => {
   const { filteredMovies, status } = useMovieList();

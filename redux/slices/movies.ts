@@ -6,10 +6,10 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../store";
-import { Movie } from "@/types/movie";
+import { Movie as MoviesType } from "@/types";
 
 interface MoviesState {
-  movies: Movie[];
+  movies: MoviesType[];
   filter: string;
   sort: string;
   status: "idle" | "loading" | "succeeded" | "failed";
@@ -17,7 +17,7 @@ interface MoviesState {
 }
 
 // Async thunk to fetch movies data
-export const fetchMovies = createAsyncThunk<Movie[]>(
+export const fetchMovies = createAsyncThunk<MoviesType[]>(
   "movies/fetchMovies",
   async () => {
     const response = await axios.get("data.json");
@@ -57,7 +57,7 @@ const moviesSlice = createSlice({
       })
       .addCase(
         fetchMovies.fulfilled,
-        (state, action: PayloadAction<Movie[]>) => {
+        (state, action: PayloadAction<MoviesType[]>) => {
           state.status = "succeeded";
           state.movies = action.payload;
         }

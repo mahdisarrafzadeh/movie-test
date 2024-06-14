@@ -2,9 +2,9 @@
 import React from "react";
 
 import useFilterMovies from "./useFilterMovies";
-import Select from "@/base/Select/Select";
-import { FilterItemsInterface } from "@/types/filter";
+import { FilterItemsInterface } from "@/types";
 import { string, testIds } from "@/utils";
+import { Select } from "@/base";
 
 const genres: FilterItemsInterface[] = [
   { label: "درام", value: "drama" },

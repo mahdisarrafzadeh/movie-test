@@ -3,9 +3,9 @@ import { FC } from "react";
 
 import classNames from "classnames";
 import useSelect from "./useSelect";
-import Checkbox from "../Checkbox/Checkbox";
+import { Checkbox } from "@/base";
 import { MdArrowDropDown } from "react-icons/md";
-import { FilterItemsInterface } from "@/types/filter";
+import { FilterItemsInterface } from "@/types";
 
 interface Props {
   items: FilterItemsInterface[];
