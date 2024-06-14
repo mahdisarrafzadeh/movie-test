@@ -12,11 +12,13 @@ const useMovieList = () => {
     selectFilteredAndSortedMovies(state)
   );
 
+  const { status } = useAppSelector((state: RootState) => state.movies);
+
   useEffect(() => {
     dispatch(fetchMovies());
   }, []); // eslint-disable-line
 
-  return filteredMovies;
+  return { filteredMovies, status };
 };
 
 export default useMovieList;
