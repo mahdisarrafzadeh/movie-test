@@ -1,4 +1,5 @@
 import { useState, FC } from "react";
+
 import Image, { ImageProps } from "next/image";
 
 interface ImageWithFallbackProps extends ImageProps {

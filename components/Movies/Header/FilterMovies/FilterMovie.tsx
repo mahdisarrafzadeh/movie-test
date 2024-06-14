@@ -33,7 +33,7 @@ const FilterMovie = () => {
       <Select
         testId={testIds.movies.sortSelect}
         className="max-sm:w-full mt-3 w-1/3"
-        title={string.movies.rate}
+        title={string.movies.rateMovie}
         items={rateRange}
         col={1}
         value={newParams.get("sort") ?? undefined}
