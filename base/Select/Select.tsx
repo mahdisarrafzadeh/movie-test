@@ -2,9 +2,9 @@
 import { FC } from "react";
 
 import classNames from "classnames";
-import { MdArrowDropDown } from "react-icons/md";
 import useSelect from "./useSelect";
-import Checkbox from "../Checkbox";
+import Checkbox from "../Checkbox/Checkbox";
+import { MdArrowDropDown } from "react-icons/md";
 import { FilterItemsInterface } from "@/types/filter";
 
 interface Props {
